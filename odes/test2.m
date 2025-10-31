@@ -10,11 +10,11 @@ h = (tf - t0) / N;
 g = 9.8;
 l = 1;
 % Derivatives of angle THETA and angular velocity OMEGA as functions of TIME, THETA and OMEGA
-f = @ (t, y) [y(2), -g / l * sin(y(1))];
+f = @ (t, y) [y(2); -g / l * sin(y(1))];
 angularVelocity = @(t, theta, omega) omega;
 angularAcceleration = @(t, theta, omega) -g / l * sin(theta);
 % Approximate Solution
-[t, solution] = GeneralRungeKutta4(t0, tf, [theta0, omega0], N, f);
+[t, solution] = RungeKutta4_sys(t0, tf, [theta0, omega0], N, f);
 theta = solution(:,1);
 omega = solution(:,2);
 % Cartesian Coordinates
